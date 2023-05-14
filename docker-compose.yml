@@ -1,0 +1,50 @@
+version: '3'
+networks:
+    default:
+        driver: bridge
+services:
+# PHP Service
+    php:
+        container_name: php
+        build:
+            context: .
+            target: php
+        working_dir: /var/www/html/
+        volumes:
+            - ./:/var/www/html/
+        ports:
+            - 8000:8000
+        depends_on:
+            - database             
+# Database Server
+    database:
+        image: mysql:8.0.28
+        container_name: my-mysql
+        restart: always   
+        ports:
+            - 33306:3306
+        environment:
+            MYSQL_DATABASE: graduated
+            MYSQL_USER: my_user
+            MYSQL_PASSWORD: my_pw
+            MYSQL_ROOT_PASSWORD: my_secret_pw
+        volumes:
+            - db-data:/var/lib/mysql
+        networks:
+            - default             
+# Create phpmyadmin service to view the database in the GUI
+    phpmyadmin:
+        image: phpmyadmin:5.2.1
+        links:
+            - database
+        ports:
+            - 4000:80      
+        environment:
+            PMA_HOST: database
+            MYSQL_ROOT_PASSWORD: my_secret_pw
+        depends_on:
+            - database    
+        networks:
+            - default 
+volumes:
+    db-data:
