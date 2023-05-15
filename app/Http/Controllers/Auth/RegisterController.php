@@ -57,7 +57,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nationality' => ['required', 'string', 'max:255'],
+            'birthday' => ['required', 'string', 'max:255'],
+            'status' => [ 'required','string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
+
+
         ]);
+        return back()->withInput();
+
     }
 
     /**
@@ -72,8 +80,16 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'nationality' => $data['nationality'],
+            'birthday' => $data['birthday'],
+            'status' => $data['status'],
+            'gender' => $data['gender'],
         ]);
+        return back()->withInput();
     }
+
+
+
     public function showHotelsRegisterForm()
     {
         return view('hotels.register', ['route' => route('hotels.register-view'), 'title'=>'Hotels']);
@@ -86,6 +102,6 @@ class RegisterController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-        return redirect()->intended('hotels');
+        return redirect()->intended('welcome');
     }
 }

@@ -16,9 +16,9 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-Auth::routes();
+Auth::routes(['verify'=>false]);
 Route::get('/hotels',[LoginController::class,'showHotelsLoginForm'])->name('hotels.login-view');
 Route::post('/hotels',[LoginController::class,'HotelsLogin'])->name('hotels.login');
 
@@ -27,6 +27,7 @@ Route::post('/hotels/register',[RegisterController::class,'createHotels'])->name
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/hotels/dashboard',function(){
+
     return view('hotels');
 })->middleware('auth:hotels');
 // Route::get('/register', [RegisterController::class, 'create'])
@@ -62,6 +63,6 @@ Route::get('/hotels/dashboard',function(){
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
