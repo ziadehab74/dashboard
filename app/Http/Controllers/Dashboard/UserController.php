@@ -87,7 +87,7 @@ class UserController extends Controller
         $courseN = 'false';
         return redirect()->back()->with('courseN',$courseN);
          }
-        
+
     public function blockuser(Request $request, $id)
     {
         $data = array();
