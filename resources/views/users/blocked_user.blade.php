@@ -11,13 +11,9 @@
                       <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">All User</h3>
-                        </div>
-                        <!-- /.card-header -->
+                          </div>
 
-                      <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">DataTable with default features</h3>
-                        </div>
+
                         <!-- /.card-header -->
                         <div class="card-body">
                           <table id="example1" class="table table-bordered table-striped">
@@ -26,7 +22,9 @@
                               <th>id</th>
                               <th>Name</th>
                               <th>Email</th>
-                              <th>Role</th>
+                              <th>Gender</th>
+                              <th>Status</th>
+                              <th>Nationality</th>
                               <th colspan="2" style="text-align: center">Action</th>
                             </tr>
                             </thead>
@@ -36,13 +34,12 @@
                                     <td>{{$key+1}}</td>
                                    <td>{{$row->name}}</td>
                                     <td>{{$row->email}}</td>
-                                    <td>{{$row->role}}</td>
-
-                                        <td><a class="nav-link bg-danger" id="button5"  href="{{URL::to('/delete-user/'.$row->id)}}"> delete</a></td>
-                                        <td><a class="nav-link bg-warning "  href="{{URL::to('/edit_user/'.$row->id)}}" >edit</a></td>
-
+                                    <td>{{$row->gender}}</td>
+                                    <td>{{$row->status}}</td>
+                                    <td>{{$row->nationality}}</td>
+                                        <td><a class="nav-link bg-warning" id="button5"  href="{{URL::to('/UpdateBlockedUser/'.$row->id)}}">Return user</a></td>
+                                        {{-- <td><a class="nav-link bg-warning "  href="{{URL::to('/edit_user/'.$row->id)}}" >Edit</a></td> --}}
                                 </tr>
-
                                 @endforeach
                             </tbody>
                             </tfoot>

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\hotels;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use App\Models\User2;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,7 +65,6 @@ class RegisterController extends Controller
 
 
         ]);
-        return back()->withInput();
 
     }
 
@@ -85,14 +85,14 @@ class RegisterController extends Controller
             'status' => $data['status'],
             'gender' => $data['gender'],
         ]);
-        return back()->withInput();
+        return back()->withInput()->all();
     }
 
 
 
     public function showHotelsRegisterForm()
     {
-        return view('hotels.register', ['route' => route('hotels.register-view'), 'title'=>'Hotels']);
+        return view('hotels.register', ['route' => route('hotels.register-view'), 'title'=>'hotels']);
     }
     protected function createHotels(Request $request)
     {

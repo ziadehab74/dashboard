@@ -29,7 +29,7 @@
         @csrf
         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
         <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control" placeholder="Name">
+            <input type="text" name="name" class="form-control" placeholder="Name" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fa fa-user"></span>
@@ -38,7 +38,7 @@
           </div>
           @error('email') <span class="text-danger">{{ $message }}</span> @enderror
         <div class="input-group mb-3">
-          <input type="email" name="email" class="form-control" placeholder="Email">
+          <input type="email" name="email" class="form-control" placeholder="Email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -47,7 +47,7 @@
         </div>
       @error('password') <span class="text-danger">{{ $message }}</span> @enderror
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control" placeholder="Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -55,7 +55,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-            <input type="password" class="form-control" name="password_confirmation" placeholder="Retype password">
+            <input type="password" class="form-control" name="password_confirmation" placeholder="Retype password" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -64,7 +64,7 @@
           </div>
           @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
           <div class="input-group mb-3">
-            <select type="text" name="nationality" class="form-control" placeholder="nationality">
+            <select type="text" name="nationality" class="form-control" placeholder="nationality" required>
                 <option value="" disabled selected>Gender</option>
                 <option value="afghan">Afghan</option>
                 <option value="albanian">Albanian</option>
@@ -267,7 +267,7 @@
           </div>
       @error('gender') <span class="text-danger">{{ $message }}</span> @enderror
           <div class="input-group mb-3">
-            <select type="text" name="gender" class="form-control" placeholder="gender">
+            <select type="text" name="gender" class="form-control" placeholder="gender" required>
                 <option value="" disabled selected>Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -280,7 +280,7 @@
           </div>
       @error('status') <span class="text-danger">{{ $message }}</span> @enderror
           <div class="input-group mb-3">
-            <select type="text" name="status" class="form-control" placeholder="Status">
+            <select type="text" name="status" class="form-control" placeholder="Status" required>
                 <option value="" disabled selected>Status</option>
                 <option value="Married">Married</option>
                 <option value="Single">Single</option>
@@ -293,7 +293,7 @@
           </div>
           @error('birthday') <span class="text-danger">{{ $message }}</span> @enderror
           <div class="input-group mb-3">
-            <input type="date" name="birthday" class="form-control" placeholder="birthday">
+            <input type="date" name="birthday" class="form-control" placeholder="birthday" required>
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fa fa-child"></span>

@@ -4,6 +4,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Dashboard\ActivityController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\HotelsController;
+use App\Http\Controllers\Dashboard\UserController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,20 +22,53 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('Home');
 });
 Auth::routes(['verify'=>false]);
+//*****************************hotels******************************
 Route::get('/hotels',[LoginController::class,'showHotelsLoginForm'])->name('hotels.login-view');
 Route::post('/hotels',[LoginController::class,'HotelsLogin'])->name('hotels.login');
-
 Route::get('/hotels/register',[RegisterController::class,'showHotelsRegisterForm'])->name('hotels.register-view');
 Route::post('/hotels/register',[RegisterController::class,'createHotels'])->name('hotels.register');
+route::get('/all-hotel',[HotelsController::class,'AllHotels'])->name('AllHotels');
+//*****************************dashboard******************************
+route::get('/dashboard',[DashboardController::class,'index'])->name('index');
+// **********************************users***********************************
+route::get('/all-user',[UserController::class,'all_user'])->name('all-user');
+route::get('/add-users',[UserController::class,'AddUserIndex'])->name('AddUserIndex');
+route::post('/insert-user',[UserController::class,'Insertuser'])->name('Insertuser');
+route::get('/blocked-users',[UserController::class,'ViewBlockedUser'])->name('ViewBlockedUser');
+route::get('/block-user/{id}',[UserController::class,'blockuser'])->name('blockuser');
+route::get('/UpdateBlockedUser/{id}',[UserController::class,'UpdateBlockedUser'])->name('UpdateBlockedUser');
+route::get('/EditUser/{id}',[UserController::class,'EditUser'])->name('EditUser');
+route::post('/UpdateUser/{id}',[UserController::class,'UpdateUser'])->name('UpdateUser');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/hotels/dashboard',function(){
+// **********************************activity***********************************
+route::get('/all-activity',[ActivityController::class,'AllActivity'])->name('AllActivity');
 
-    return view('hotels');
-})->middleware('auth:hotels');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::get('/hotels/dashboard',function(){
+//     return view('hotels');
+// })->middleware('auth:hotels');
+
 // Route::get('/register', [RegisterController::class, 'create'])
 //                         ->name('register')
 //                         ->middleware('guest:user,hotels');
@@ -42,27 +81,3 @@ Route::get('/hotels/dashboard',function(){
 // Route::get('/delete-user/{id}', [App\Http\Controllers\backend\UserController::class, 'DeleteUser'])->name('DeleteUser');
 // Route::get('/approve_user', [App\Http\Controllers\backend\UserController::class, 'ApproveUser'])->name('ApproveUser');
 // Route::get('/update_user_approve_user/{id}', [App\Http\Controllers\backend\UserController::class, 'UpdateApproveUser'])->name('UpdateApproveUser');
-
-
-
-
-
-
-// Route::get('/datatable', function () {
-//     return view('backend.datatable');
-// });
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Auth::routes();
-
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

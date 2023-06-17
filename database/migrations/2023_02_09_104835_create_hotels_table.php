@@ -26,6 +26,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('location_id')->nullable();
             $table->string('image')->nullable();
+            $table->string('city_id')->nullable();
             $table->string('application_documents')->nullable();
         });
     }

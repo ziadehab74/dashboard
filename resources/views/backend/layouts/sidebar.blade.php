@@ -43,46 +43,86 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-                @if (auth()->user()->role=='Admin')
-
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                User Mangement
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{URL::to('/alluser')}}" class="nav-link">
+                <a href="{{URL::to('/all-user')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All User</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL::to('/add-user-index')}}" class="nav-link">
+                <a href="{{URL::to('/all-hotel')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Hotels</p>
+                </a>
+              </li>
+              <li>
+                <li class="nav-item">
+                    <a href="{{URL::to('/all-activity')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>All Activities</p>
+                    </a>
+                  </li>
+                  <li>
+              <li class="nav-item">
+                <a href="{{URL::to('/add-users')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add user</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                <a href="{{URL::to('/blocked-users')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Waitting user</p>
+                  <p>Blocked users</p>
                 </a>
               </li>
-          @endif
 
-        </ul>
-        <a class="dropdown-item" href="{{ route('logout') }}"
-   onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">
-   {{ __('Logout') }}
-</a>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-    @csrf
-</form>
+              <li class="nav-item">
+                <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Hotels</p>
+                </a>
+              </li>
+              <li>
+              <li class="nav-item">
+                <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Waitting Hotels</p>
+                </a>
+              </li>
+              <li>
+                <li class="nav-item">
+                    <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Blocked Hotels</p>
+                    </a>
+                  </li>
+                  <li>
+                    <li class="nav-item">
+                        <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Add Activity</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Show Invoices</p>
+                        </a>
+                      </li>
+                      <li>
+                <a href="{{ route('logout') }}" class="nav-link"
+                 onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+               <i class="nav-icon fas fa-copy"></i>
+               <p>Logout</p>
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+              </form>
+             </p>
+           </a>
+         </li>
+
 
       </nav>
       <!-- /.sidebar-menu -->

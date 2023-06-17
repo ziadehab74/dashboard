@@ -14,6 +14,7 @@ use App\Traits\HttpResponses;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -22,127 +23,96 @@ class UserController extends Controller
     {
         // $this->middleware('auth');
     }
-    public function Alluser()
-    {
-        $all= DB::table('users')
+
+    public function all_user(){
+        $all = DB::table('users')
         ->get()
-        ->where('approved',1);
-        return view('backend.user.all_user' ,compact('all'));
+        ->whereNotIn('type',3);
+        ;
+    return view('users.all-user', compact('all'));
+      }
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nationality' => ['required', 'string', 'max:255'],
+            'birthday' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'max:255'],
+
+
+        ]);
     }
     public function AddUserIndex()
     {
-       return view('backend.user.add_user');
+        return view('users.add-user');
     }
     public function Insertuser(Request $request)
     {
-        $data= array();
-        $data['name'] = $request->name;
-        $data['email'] = $request->email ;
-        $data['role'] = $request->role ;
-        $data['password'] = Hash::make($request->password);
-        $data['created_at'] = date('y-m-d H:i:s') ;
-        $data['approved']= (1);
-        $insert = DB::table('users')->insert($data);
+        try {
+            $data = array();
+            $data['name'] = $request->name;
+            $data['email'] = $request->email;
+            $data['status'] = $request->status;
+            $data['nationality'] = $request->nationality;
+            $data['password'] = Hash::make($request->password);
+
+            $insert = DB::table('users')->insert($data);
+        } catch (\Illuminate\Database\QueryException $ex) {
+            // handle the duplicate entry error
+            if ($ex->errorInfo[1] == 1062) {
+                $this->validator($request->all())->validate();
+            }
+        }
         $courseN = 'false';
-        return redirect()->back()->with('courseN',$courseN);
-
-
+        return redirect()->back()->with('courseN', $courseN);
     }
     public function EditUser($id)
     {
-
-        $edit = DB::table('users')->where('id',$id)->first();
-        return view('backend.user.edit_user',compact('edit'));
-
-
+        $edit = DB::table('users')->where('id', $id)->first();
+        return view('users.edit-user', compact('edit'));
     }
-    public function UpdateUser(Request $request,$id)
+    public function UpdateUser(Request $request, $id)
     {
-        $data= array();
+        $data = array();
         $data['name'] = $request->name;
-        $data['email'] = $request->email ;
-        $data['role'] = $request->role ;
+        $data['email'] = $request->email;
+        $data['status'] = $request->status;
+        $data['nationality'] = $request->nationality;
         $data['password'] = Hash::make($request->password);
-        $data['updated_at'] = date('y-m-d H:i:s') ;
+        $update = DB::table('users')->update($data);
+        $courseN = 'false';
+        $courseN = 'false';
+        return redirect()->back()->with('courseN',$courseN);        }
+    public function blockuser(Request $request, $id)
+    {
+        $data = array();
+        $data['updated_at'] =date('y-m-d H:i:s');
+        $data['type'] =  (3);
         $update = DB::table('users')
-        ->where('id',$id)
-        ->update($data);
-
+            ->where('id', $id)
+            ->update($data);
         $courseN = 'false';
-        return redirect()->back()->with('courseN',$courseN);
-
-
-    }
-    public function DeleteUser(Request $request,$id)
+        return redirect()->back()->with('courseN', $courseN);
+      }
+    public function ViewBlockedUser(Request $request)
     {
-
-        $delete = DB::table('users')
-        ->where('id',$id)
-        ->delete();
-        $courseN = 'false';
-        return redirect()->back()->with('courseN',$courseN);
-
-
-
+        $all = DB::table('users')
+            ->get()
+            ->where('type', 3);
+        return view('users.blocked_user', compact('all'));
     }
-    public function ApproveUser(Request $request)
+    public function UpdateBlockedUser(Request $request, $id)
     {
-        $all= DB::table('users')
-        ->get()
-        ->where('approved',0);
-        return view('backend.user.approve_user' ,compact('all'));
-
-
-
-    }
-    public function UpdateApproveUser(Request $request ,$id)
-    {
-
-        $data= array();
-        $data['updated_at'] = date('y-m-d H:i:s') ;
-        $data['approved']= (1);
+        $data = array();
+        $data['updated_at'] = date('y-m-d H:i:s');
+        $data['type'] = (1);
         $update = DB::table('users')
-        ->where('id',$id)
-        ->update($data);
-
+            ->where('id', $id)
+            ->update($data);
         $courseN = 'false';
-        return redirect()->back()->with('courseN',$courseN);
-
-
+        return redirect()->back()->with('courseN', $courseN);
     }
-
-
-    // public function Login(RequestsLoginUserRequest $request)
-    // {
-    //     $hotels = hotels::where('email', $request->email)->first();
-
-    //     if(!$hotels || !Hash::check($request->password, $hotels->password)) {
-
-    //         return $this->error('The provided credentials are incorrect.', 401);
-    //     }
-
-    //     return $this->success([
-    //         'token' => $hotels->createToken('api-auth-token')->plainTextToken,
-    //         'user' => $hotels,
-    //     ], 'You are logged!');
-    // }
-
-
-    public function Register(StoreUserRequest $request)
-        {
-            // dd($request->password);
-            $request->Validated($request->all());
-
-            $hotels = hotels::create([
-                'Hotel_name'=>$request->Hotel_name,
-                'email'=>$request->email,
-                'password'=>Hash::make($request->password),
-            ]);
-
-            return $this->success([
-                'user' => $hotels,
-                'token' => $hotels->createToken('api-auth-token')->plainTextToken,
-            ] ,'You are Registerd successfully');
-        }
-
 }
