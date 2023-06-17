@@ -85,9 +85,7 @@ class UserController extends Controller
         $update = DB::table('users')->update($data);
         $courseN = 'false';
         $courseN = 'false';
-        return redirect()->back()->with('courseN',$courseN);
-         }
-
+        return redirect()->back()->with('courseN',$courseN);        }
     public function blockuser(Request $request, $id)
     {
         $data = array();
