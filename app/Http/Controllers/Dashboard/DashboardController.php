@@ -32,4 +32,9 @@ class DashboardController extends Controller
       $reviews=$ReviewHotel+$ReviewActivity;
       return view('dashboard' ,compact('users' , 'hotels', 'activity','totalBooking','reviews'));
   }
+  public function hoteldashboard()
+  {
+
+      return view('hotel_dashboard');
+  }
 }

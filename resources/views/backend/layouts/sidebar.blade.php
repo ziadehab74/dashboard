@@ -12,9 +12,9 @@
         <div class="image">
           <img src="{{asset('backend/dist/img/admin.png')}}" class="img-circle elevation-2" alt="User Image">
         </div>
-        <div class="info">
+        {{-- <div class="info">
           <a href="#" class="d-block">{{auth()->user()->name}}</a>
-        </div>
+        </div> --}}
       </div>
 
       <!-- SidebarSearch Form -->
@@ -77,21 +77,21 @@
               </li>
 
               <li class="nav-item">
-                <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                <a href="{{URL::to('/addhoteldash')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Hotels</p>
                 </a>
               </li>
               <li>
               <li class="nav-item">
-                <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                <a href="{{URL::to('/waitingHotels')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Waitting Hotels</p>
                 </a>
               </li>
               <li>
                 <li class="nav-item">
-                    <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                    <a href="{{URL::to('/ViewBlockedhotel')}}" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Blocked Hotels</p>
                     </a>

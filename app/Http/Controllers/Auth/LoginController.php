@@ -54,9 +54,9 @@ class LoginController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('hotels')->attempt($request->only(['email','password']), $request->get('remember'))){
-            return redirect()->intended('/hotels/dashboard');
-        }
+        // if (Auth::guard('hotels')->attempt($request->only(['email','password']), $request->get('remember'))){
+        //     return redirect()->intended('/dashboard');
+        // }
 
         return back()->withInput($request->only('email', 'remember'));
     }

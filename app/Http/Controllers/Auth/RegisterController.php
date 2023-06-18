@@ -62,6 +62,7 @@ class RegisterController extends Controller
             'birthday' => ['required', 'string', 'max:255'],
             'status' => [ 'required','string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
+            'type'=>1,
 
 
         ]);
@@ -86,22 +87,5 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
         ]);
         return back()->withInput()->all();
-    }
-
-
-
-    public function showHotelsRegisterForm()
-    {
-        return view('hotels.register', ['route' => route('hotels.register-view'), 'title'=>'hotels']);
-    }
-    protected function createHotels(Request $request)
-    {
-        $this->validator($request->all())->validate();
-        $hotels = hotels::create([
-            'Hotel_name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
-        return redirect()->intended('welcome');
     }
 }

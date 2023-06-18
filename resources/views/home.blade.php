@@ -85,7 +85,7 @@
                 <div class="links">
                                 @if (Route::has('login'))
                                 @auth
-                    <a href="{{ url('/home') }}"">Home</a>
+                    <a href="{{ url('/dashboard') }}"">Dashboard</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
@@ -102,7 +102,7 @@
 
                     <a href="{{ route('hotels.login') }}">login as hotel</a>
                     <a href="{{ route('hotels.register') }}">register as hotel</a>
-                    <a href="https://github.com/laravel/laravel">Contact Us</a>
+                    <a href="https://wa.me/01020341549">Contact Us</a>
                     @endif
                     @endauth
                     @endif

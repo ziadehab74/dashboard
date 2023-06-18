@@ -25,7 +25,7 @@
                               <th>Facilities</th>
                               <th>Application Documents</th>
                               <th>City</th>
-                              <th>Rate</th>
+
 
                               <th colspan="2" style="text-align: center">Action</th>
                             </tr>
@@ -39,9 +39,7 @@
                                     <td>{{$row->facilities}}</td>
                                     <td>{{$row->application_documents}}</td>
                                     <td>{{$row->name_en}}</td>
-                                    <td>{{$row->average_rate}}</td>
-                                        <td><a class="nav-link bg-danger" href="{{URL::to('/blockhotel/'.$row->id)}}"> Block</a></td>
-                                        <td><a class="nav-link bg-warning "  href="{{URL::to('/edit_user/'.$row->id)}}" >Edit</a></td>
+                                        <td><a class="nav-link bg-warning" id="button5"  href="{{URL::to('/UpdateBlockedhotel/'.$row->id)}}">Return Hotel</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
