@@ -22,7 +22,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('Home');
+    return view('home');
 });
 Auth::routes(['verify'=>false]);
 //*****************************hotels******************************
