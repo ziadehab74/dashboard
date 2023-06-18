@@ -20,7 +20,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href={{route('home')}} class="h1"><b>Travel X</b></a>
+      <a href="{{route('register')}}"class="h1"><b>Travel X</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register to start your session</p>
@@ -324,14 +324,12 @@ document.getElementById('form').value = localStorage.getItem('inputValue');
  </script>
       <!-- /.social-auth-links -->
 
+
       <p class="mb-1">
-        <a href="{{route('password.request')}}">I forgot my password</a>
-      </p>
-      <p class="mb-1">
-        <a href="{{route('login')}}">I already have a membership</a>
+        <a href="{{route('hotels.login')}}">I already have a membership</a>
       </p>
       <p class="mb-0">
-        <a href="{{route('hotels.register')}}" class="text-center">Register As Hotel </a>
+        <a href="{{route('register')}}" class="text-center">Register As Hotel </a>
       </p>
     </div>
     <!-- /.card-body -->

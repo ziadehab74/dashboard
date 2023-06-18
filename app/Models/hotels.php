@@ -31,7 +31,8 @@ protected $fillable =[
 'image',
 'application_documents',
 'location_id',
-'password'
+'password',
+'status'
 ];
 protected $hidden = [
     'password',
