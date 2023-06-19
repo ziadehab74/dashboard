@@ -34,7 +34,8 @@ class HotelsController extends Controller
     {
         $all = DB::table('hotels')
             ->leftJoin('review_hotels', 'hotels.id', '=', 'review_hotels.Hotel_id')
-            // ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
+            ->leftJoin('hotel_infos', 'hotels.id', '=', 'hotel_infos.hotel_id')
+            ->leftJoin('cities', 'hotel_infos.id', '=', 'cities.name_en')
 
             ->select(
                 'hotels.id',
@@ -42,7 +43,7 @@ class HotelsController extends Controller
                 'hotels.email',
                 'hotels.facilities',
                 'hotels.application_documents',
-                // 'cities.name_en',
+                'cities.name_en',
                 DB::raw('round(AVG(review_hotels.rate),2) as average_rate'),
 
             )
@@ -85,7 +86,8 @@ class HotelsController extends Controller
     public function waitingHotels(Request $request)
     {
         $all = DB::table('hotels')
-            ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
+        ->leftJoin('hotel_infos', 'hotels.id', '=', 'hotel_infos.hotel_id')
+        ->leftJoin('cities', 'hotel_infos.id', '=', 'cities.name_en')
             ->select(
                 'hotels.id',
                 'hotels.Hotel_name',
@@ -97,9 +99,10 @@ class HotelsController extends Controller
             )
             ->where('status', 0)
 
-            ->groupBy('hotels.id', 'hotels.Hotel_name')
+            ->groupBy('hotels.id', 'hotels.Hotel_name','hotels.email', 'hotels.facilities', 'hotels.application_documents', 'cities.name_en')
             ->get();
         return view('hotels.waiting_hotels', compact('all'));
+
     }
     public function AcceptHotel(Request $request, $id)
     {
@@ -137,8 +140,9 @@ class HotelsController extends Controller
       public function ViewBlockedhotel(Request $request)
       {
         $all = DB::table('hotels')
-        ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
-        ->select(
+        ->leftJoin('hotel_infos', 'hotels.id', '=', 'hotel_infos.hotel_id')
+        ->leftJoin('cities', 'hotel_infos.id', '=', 'cities.name_en')
+                ->select(
             'hotels.id',
             'hotels.Hotel_name',
             'hotels.email',
@@ -149,7 +153,7 @@ class HotelsController extends Controller
         )
         ->where('status', 2)
 
-        ->groupBy('hotels.id', 'hotels.Hotel_name')
+        ->groupBy('hotels.id', 'hotels.Hotel_name','hotels.email', 'hotels.facilities', 'hotels.application_documents', 'cities.name_en')
         ->get();
           return view('hotels.blocked_hotels', compact('all'));
       }
