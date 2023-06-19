@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 class HotelsController extends Controller
 {
+    public function index()
+{
+ $cities =DB::table('cities')->select('id','name_en')->get();
+return view('hotels.add-activity',compact('cities'));
+}
     public function HotelsLogin(Request $request)
     {
         $this->validate($request, [

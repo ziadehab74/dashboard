@@ -135,7 +135,7 @@ document.getElementById('form').value = localStorage.getItem('inputValue');
         <a href="{{route('hotels.login')}}">I already have a membership</a>
       </p>
       <p class="mb-0">
-        <a href="{{route('hotels.register')}}" class="text-center">Register As Admin </a>
+        <a href="{{route('register')}}" class="text-center">Register As Admin </a>
       </p>
     </div>
     <!-- /.card-body -->
