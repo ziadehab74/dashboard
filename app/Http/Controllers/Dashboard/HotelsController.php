@@ -34,7 +34,7 @@ class HotelsController extends Controller
     {
         $all = DB::table('hotels')
             ->leftJoin('review_hotels', 'hotels.id', '=', 'review_hotels.hotel_id')
-            ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
+            // ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
 
             ->select(
                 'hotels.id',
@@ -42,7 +42,7 @@ class HotelsController extends Controller
                 'hotels.email',
                 'hotels.facilities',
                 'hotels.application_documents',
-                'cities.name_en',
+                // 'cities.name_en',
                 DB::raw('round(AVG(review_hotels.rate),2) as average_rate'),
 
             )
