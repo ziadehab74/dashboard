@@ -33,7 +33,7 @@ class HotelsController extends Controller
     public function AllHotels()
     {
         $all = DB::table('hotels')
-            ->leftJoin('review_hotels', 'hotels.id', '=', 'review_hotels.hotel_id')
+            ->leftJoin('review_hotels', 'hotels.id', '=', 'review_hotels.Hotel_id')
             // ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
 
             ->select(
