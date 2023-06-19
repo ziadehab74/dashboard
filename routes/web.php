@@ -27,8 +27,8 @@ Route::get('/', function () {
 Auth::routes(['verify'=>false]);
 //*****************************hotels******************************
 
-Route::get('/hotels',[LoginController::class,'showHotelsLoginForm'])->name('hotels.login-view');
-Route::post('/hotels',[LoginController::class,'HotelsLogin'])->name('hotels.login');
+Route::get('/hotels',[HotelsController::class,'showHotelsLoginForm'])->name('hotels.login-view');
+Route::post('/hotels',[HotelsController::class,'HotelsLogin'])->name('hotels.login');
 Route::get('/hotels/register',[HotelsController::class,'showHotelsRegisterForm'])->name('hotels.register-view');
 Route::post('/hotels/register',[HotelsController::class,'createHotels'])->name('hotels.register');
 route::get('/all-hotel',[HotelsController::class,'AllHotels'])->name('AllHotels');
@@ -39,6 +39,7 @@ route::get('/UpdateBlockedhotel/{id}',[HotelsController::class,'UpdateBlockedhot
 route::get('/ViewBlockedhotel',[HotelsController::class,'ViewBlockedhotel'])->name('ViewBlockedhotel');
 Route::get('/addhoteldash',[HotelsController::class,'addhotelsview'])->name('addhotelsview');
 route::post('/Inserthotel',[HotelsController::class,'Inserthotel'])->name('Inserthotel');
+route::get('/Hotel_dashboard',[HotelsController::class,'Hotel_dashboard'])->name('Hotel_dashboard');
 
 
 //*****************************dashboard******************************

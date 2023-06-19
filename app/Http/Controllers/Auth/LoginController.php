@@ -42,22 +42,7 @@ class LoginController extends Controller
         $this->middleware('guest:hotels')->except('logout');
 
     }
-    public function showHotelsLoginForm()
-    {
-        return view('hotels.login', ['url' => route('hotels.login-view'), 'title'=>'hotels']);
-    }
 
-    public function HotelsLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
 
-        // if (Auth::guard('hotels')->attempt($request->only(['email','password']), $request->get('remember'))){
-        //     return redirect()->intended('/dashboard');
-        // }
 
-        return back()->withInput($request->only('email', 'remember'));
-    }
 }
