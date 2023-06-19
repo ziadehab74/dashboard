@@ -17,8 +17,8 @@ class ActivityController extends Controller
             ->leftJoin('hotels', 'activities.hotel_id', '=', 'hotels.id')
             ->select('activities.id','categories.name' ,'activities.activityName', 'cities.name_en as city',
             DB::raw('round(AVG(review_activities.rate),2) as avg_rating'),
-            DB::raw('COUNT(review_activities.id) as total_reviews'), 'hotels.Hotel_name as hotel_name','activities.activityPrice')
-            ->groupBy('activities.id', 'activities.activityName', 'cities.name_en', 'hotels.hotel_name')
+            DB::raw('COUNT(review_activities.id) as total_reviews'), 'hotels.Hotel_name as Hotel_name','activities.activityPrice')
+            ->groupBy('activities.id', 'activities.activityName', 'cities.name_en', 'hotels.Hotel_name')
             ->orderBy('avg_rating', 'desc')
             ->get();
             return view('activity.activity-table' ,compact('all'));

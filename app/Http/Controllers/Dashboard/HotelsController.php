@@ -7,34 +7,34 @@ use App\Models\city;
 use App\Models\hotels;
 use App\Models\ReviewHotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 class HotelsController extends Controller
 {
-        // public function Register(StoreUserRequest $request)
-    //     {
-    //         // dd($request->password);
-    //         $request->Validated($request->all());
+    public function HotelsLogin(Request $request)
+    {
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
 
-    //         $hotels = hotels::create([
-    //             'Hotel_name'=>$request->Hotel_name,
-    //             'email'=>$request->email,
-    //             'password'=>Hash::make($request->password),
-    //         ]);
+        if (Auth::guard('hotels')->attempt($request->only(['email','password']), $request->get('remember'))){
+            return redirect()->intended('/Hotel_dashboard');
+        }
 
-    //         return $this->success([
-    //             'user' => $hotels,
-    //             'token' => $hotels->createToken('api-auth-token')->plainTextToken,
-    //         ] ,'You are Registerd successfully');
-    //     }
-
-
+        return back()->withInput($request->only('email', 'remember'));
+    }
+    public function showHotelsLoginForm()
+    {
+        return view('hotels.login', ['url' => route('hotels.login-view'), 'title'=>'hotels']);
+    }
     public function AllHotels()
     {
         $all = DB::table('hotels')
             ->leftJoin('review_hotels', 'hotels.id', '=', 'review_hotels.hotel_id')
-            ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
+            // ->leftJoin('cities', 'hotels.city_id', '=', 'cities.id')
 
             ->select(
                 'hotels.id',
@@ -42,7 +42,7 @@ class HotelsController extends Controller
                 'hotels.email',
                 'hotels.facilities',
                 'hotels.application_documents',
-                'cities.name_en',
+                // 'cities.name_en',
                 DB::raw('round(AVG(review_hotels.rate),2) as average_rate'),
 
             )
@@ -56,6 +56,11 @@ class HotelsController extends Controller
     {
         return view('hotels.register', ['route' => route('hotels.register-view'), 'title'=>'hotels']);
     }
+      public function Hotel_dashboard()
+    {
+        return view('hotel_dashboard');
+    }
+
     protected function createHotels(Request $request)
     {
         // $this->validator($request->all())->validate();
@@ -69,7 +74,7 @@ class HotelsController extends Controller
             'application_documents'=> $request['application_documents'],
             'status'=>0,
         ]);
-        return redirect()->intended('Hotel-dashboard');
+        return redirect()->intended('Hotel_dashboard');
     }
     public function city()
     {
