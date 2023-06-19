@@ -326,10 +326,10 @@ document.getElementById('form').value = localStorage.getItem('inputValue');
 
 
       <p class="mb-1">
-        <a href="{{route('hotels.login')}}">I already have a membership</a>
+        <a href="{{route('login')}}">I already have a membership</a>
       </p>
       <p class="mb-0">
-        <a href="{{route('register')}}" class="text-center">Register As Hotel </a>
+        <a href="{{route('hotels.register')}}" class="text-center">Register As Hotel </a>
       </p>
     </div>
     <!-- /.card-body -->

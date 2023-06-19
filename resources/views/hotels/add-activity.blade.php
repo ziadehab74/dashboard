@@ -62,12 +62,86 @@
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
-    <section class="content">
-        <div class="container-fluid">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-10">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+            Add Activity
+                </h5>
+            </div>
+            <div class="card-body">
+                <form action="{{URL::to('/creatactivity')}}" method="post">
+                    <div class="mx-auto">
+                    @error            ('activityName') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+                    @csrf
+                    <div class="form-group row">
+                        <label for="activityName" class="col-sm-2 col-form-label">activity Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="activityName" placeholder="Enter activity Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="activityPrice" class="col-sm-2 col-form-label">activityPrice</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="activityPrice" placeholder="Enter activity Price" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="description" class="col-sm-2 col-form-label">description</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="description" placeholder="Enter  description" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="openTime" class="col-sm-2 col-form-label">openTime</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control" name="openTime" placeholder="Enter openTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">closeTime</label>
+                        <div class="col-sm-10">
+                            <input type="time" class="form-control" name="closeTime" placeholder="Enter closeTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="category_id" class="col-sm-2 col-form-label"> activity category</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="category_id" placeholder="Enter activity category" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="city_id" class="col-sm-2 col-form-label">city</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="city_id" placeholder="Enter  city" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="hotel_id" class="col-sm-2 col-form-label">hotel Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="hotel_id" placeholder="Enter hotel Name" required>
+                        </div>
+                    </div>
+            </div>
+            <div class="card-footer " style="display: flex; justify-content: right; align-items: center">
+                <button type="submit" class="btn btn-info" style="width: 20%">
+                    submit
+                </button>
+            </div>
+        </form>
+
+        </div>
+                </div>
+                <div class="col-lg-1">
+
+                </div>
+            </div>
+            </section>
+        </div>`
 
 
             <!-- ./col -->
@@ -114,8 +188,6 @@
           <!-- Sidebar Menu -->
           <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-              <!-- Add icons to the links using the .nav-icon class
-                   with font-awesome or any other icon font library -->
               <li class="nav-item menu-open">
                 <a href="#" class="nav-link active">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -126,7 +198,7 @@
                 </a>
 
                         <li class="nav-item">
-                            <a href="{{URL::to('/insert_activity')}}" class="nav-link">
+                            <a href="{{URL::to('/approve_user')}}" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Add Activity</p>
                             </a>
