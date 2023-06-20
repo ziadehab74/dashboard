@@ -84,8 +84,8 @@ class UserController extends Controller
         $data['password'] = Hash::make($request->password);
         $update = DB::table('users')->update($data);
         $courseN = 'false';
-        $courseN = 'false';
-        return redirect()->back()->with('courseN',$courseN);        }
+        return redirect()->intended('/all-user');
+    }
     public function blockuser(Request $request, $id)
     {
         $data = array();
