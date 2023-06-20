@@ -97,19 +97,7 @@
                     </a>
                   </li>
                   <li>
-                    <li class="nav-item">
-                        <a href="{{URL::to('/insert_activity')}}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Add Activity</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="{{URL::to('/approve_user')}}" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
-                          <p>Show Invoices</p>
-                        </a>
-                      </li>
-                      <li>
+
                 <a href="{{ route('logout') }}" class="nav-link"
                  onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
