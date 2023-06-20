@@ -98,7 +98,7 @@
                   </li>
                   <li>
                     <li class="nav-item">
-                        <a href="{{URL::to('/approve_user')}}" class="nav-link">
+                        <a href="{{URL::to('/insert_activity')}}" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
                           <p>Add Activity</p>
                         </a>

@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class RegisterController extends Controller
 {
@@ -32,7 +33,8 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -54,6 +56,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -62,7 +65,6 @@ class RegisterController extends Controller
             'birthday' => ['required', 'string', 'max:255'],
             'status' => [ 'required','string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
-            'type'=>1,
 
 
         ]);
@@ -77,6 +79,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -85,7 +88,8 @@ class RegisterController extends Controller
             'birthday' => $data['birthday'],
             'status' => $data['status'],
             'gender' => $data['gender'],
+            'type'=>(1)
         ]);
-        return back()->withInput()->all();
+        return redirect()->intended('/dashboard');
     }
 }
