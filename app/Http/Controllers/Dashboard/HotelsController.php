@@ -44,7 +44,6 @@ class HotelsController extends Controller
 
     public function showHotelsLoginForm()
     {
-        dump(session()->all());
         if (\Session::get('email'))
             return redirect()->intended('/Hotel_dashboard');
         return view('hotels.login', ['url' => route('hotels.login-view'), 'title' => 'hotels']);
