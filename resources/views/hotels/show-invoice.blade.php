@@ -10,7 +10,7 @@
                     <div class="col-12">
                       <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">All Activities</h3>
+                          <h3 class="card-title">All User</h3>
                           </div>
 
 
@@ -20,27 +20,32 @@
                             <thead>
                             <tr>
                               <th>id</th>
-                              <th>Hotel Name</th>
-                              <th>Email</th>
-                              <th>Facilities</th>
-                              <th>Application Documents</th>
-                              <th>City</th>
-                              <th>Rate</th>
-
-                              <th colspan="1" style="text-align: center">Action</th>
+                              <th>user name</th>
+                              <th>Hotel name</th>
+                              <th>no of nights</th>
+                              <th>no of gustes</th>
+                              <th>total price</th>
+                              <th>check in</th>
+                              <th>check out</th>
+                              <th>status</th>
+                              <th>payment_status</th>
+                              <th>payment_method</th>
                             </tr>
                             </thead>
                             <tbody>
                                  @foreach ($all as $key=>$row)
                                 <tr>
                                    <td>{{$key+1}}</td>
+                                   <td>{{$row->name}}</td>
                                    <td>{{$row->Hotel_name}}</td>
-                                    <td>{{$row->email}}</td>
-                                    <td>{{$row->facilities}}</td>
-                                    <td>{{$row->application_documents}}</td>
-                                    <td>{{$row->name_en}}</td>
-                                    <td>{{$row->average_rate}}</td>
-                                        <td><a class="nav-link bg-danger" href="{{URL::to('/blockhotel/'.$row->id)}}"> Block</a></td>
+                                   <td>{{$row->num_of_nights}}</td>
+                                    <td>{{$row->num_of_guests}}</td>
+                                    <td>{{$row->total_price}}</td>
+                                    <td>{{$row->check_in}}</td>
+                                    <td>{{$row->check_out}}</td>
+                                    <td>{{$row->status}}</td>
+                                    <td>{{$row->payment_status}}</td>
+                                    <td>{{$row->payment_method}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -14,7 +14,7 @@
         </h5>
     </div>
     <div class="card-body">
-        <form action="{{URL::to('/UpdateUser')}}" method="post">
+        <form action="{{URL::to('/UpdateUser/'.$row->id)}}" method="post">
             <div class="mx-auto">
             @error            ('email') <span class="text-danger">{{ $message }}</span> @enderror
         </div>

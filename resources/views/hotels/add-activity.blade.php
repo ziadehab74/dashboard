@@ -124,9 +124,9 @@
                         <label for="hotel_id" class="col-sm-2 col-form-label">hotel Name</label>
                         <div class="col-sm-10">
                             <select id="Hotel_name" name="Hotel_name">
-                                @foreach ($hotels as $hotel)
+                                {{-- @foreach ($hotels as $hotel)
                                     <option value="{{ $hotel->id }}">{{ $hotel->Hotel_name }}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>

@@ -15,6 +15,7 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Ui\Presets\React;
 
 class UserController extends Controller
 {
@@ -71,20 +72,24 @@ class UserController extends Controller
     }
     public function EditUser($id)
     {
+
         $edit = DB::table('users')->where('id', $id)->first();
         return view('users.edit-user', compact('edit'));
     }
-    public function UpdateUser(Request $request, $id)
+    public function UpdateUser(Request $request , $id)
     {
+
+        // $id = $request->id;
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['status'] = $request->status;
         $data['nationality'] = $request->nationality;
         $data['password'] = Hash::make($request->password);
-        $update = DB::table('users')->update($data);
+        $update = DB::table('users')->where('id',17)->update($data);
         $courseN = 'false';
-        return redirect()->intended('/all-user');
+        // dd($data);
+        return view('/all-user',compact('update'));
     }
     public function blockuser(Request $request, $id)
     {

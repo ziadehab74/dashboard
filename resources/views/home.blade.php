@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                                @if (Route::has('login'))
+                                @if (Route::has('login')||Route::has('auth:hotels'))
                                 @auth
                     <a href="{{ url('/dashboard') }}"">Dashboard</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -95,8 +95,7 @@
                      @csrf
                  </form>
                               @else
-
-                    <a href="{{ route('login') }}">login as Admin</a>
+                    <a href="{{ url('login') }}">login as Admin</a>
                     @if (Route::has('register'))
                     <a href="{{ route('register') }}">register As Admin</a>
 

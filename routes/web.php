@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\ActivityController;
+use App\Http\Controllers\Dashboard\bookingController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\HotelsController;
 use App\Http\Controllers\Dashboard\UserController;
@@ -48,23 +49,25 @@ Route::group(['middleware' => ['auth']], function () {
     route::get('/block-user/{id}', [UserController::class, 'blockuser'])->name('blockuser');
     route::get('/UpdateBlockedUser/{id}', [UserController::class, 'UpdateBlockedUser'])->name('UpdateBlockedUser');
     route::get('/EditUser/{id}', [UserController::class, 'EditUser'])->name('EditUser');
-    route::get('/UpdateUser/{id}', [UserController::class, 'UpdateUser'])->name('UpdateUser');
+    route::post('/UpdateUser/{id}', [UserController::class, 'UpdateUser'])->name('UpdateUser');
     route::get('/show', [HotelsController::class, 'index'])->name('index');
+    route::get('/all-activity', [ActivityController::class, 'AllActivity'])->name('AllActivity');
+
 });
 Route::group(['middleware' => ['auth:hotels']], function () {
     route::get('/insert_activity', [ActivityController::class, 'showinsertactivity'])->name('showinsertactivity');
     route::post('/creatactivity', [ActivityController::class, 'creatactivity'])->name('creatactivity');
     route::get('/Hotel_dashboard', [HotelsController::class, 'Hotel_dashboard'])->name('Hotel_dashboard');
-
-
 });
+
 Route::get('/hotels', [HotelsController::class, 'showHotelsLoginForm'])->name('hotels.login-view');
 Route::post('/hotels', [HotelsController::class, 'HotelsLogin'])->name('hotels.login');
 Route::get('/hotels/register', [HotelsController::class, 'showHotelsRegisterForm'])->name('hotels.register-view');
+Route::get('/allbooking', [bookingController::class, 'allbooking'])->name('allbooking');
 Route::post('/hotels/register', [HotelsController::class, 'createHotels'])->name('hotels.register');
+
+
 Auth::routes();
-
-
 
 
 
