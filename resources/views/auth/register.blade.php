@@ -26,7 +26,7 @@
       <p class="login-box-msg">Register to start your session</p>
 
       <form action="{{route('register')}}" method="post" id="form">
-        @csrf
+        {{-- @csrf --}}
         @error('name') <span class="text-danger">{{ $message }}</span> @enderror
         <div class="input-group mb-3">
             <input type="text" name="name" class="form-control" placeholder="Name" required>

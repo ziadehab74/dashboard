@@ -27,7 +27,7 @@
       <p class="login-box-msg">Sign in to start your session</p>
 
       <form action="{{route('login')}}" method="post">
-        @csrf
+        {{-- @csrf --}}
         @error('email') <span class="text-danger">{{ $message }}</span> @enderror
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control" placeholder="Email">

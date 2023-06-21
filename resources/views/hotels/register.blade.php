@@ -22,7 +22,7 @@
       <p class="login-box-msg">Register to start your session</p>
 
       <form action="{{route('hotels.register')}}" method="post" id="form">
-        @csrf
+        {{-- @csrf --}}
         @error('Hotel_name') <span class="text-danger">{{ $message }}</span> @enderror
         <div class="input-group mb-3">
             <input type="text" name="Hotel_name" class="form-control" placeholder="Hotel Name" required>
